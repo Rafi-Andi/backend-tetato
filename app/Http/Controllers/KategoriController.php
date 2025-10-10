@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Kategori;
+use Exception;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\ValidationException;
 
 class KategoriController extends Controller
 {
@@ -12,7 +15,19 @@ class KategoriController extends Controller
      */
     public function index()
     {
-        //
+        try {
+            $kategori = Kategori::select('id', 'nama_kategori')->get();
+
+            return response()->json([
+                "message" => "Berhasil mengambil data kategori",
+                "data" => $kategori
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Gagal Mengambil Data Kategori",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -28,7 +43,26 @@ class KategoriController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $data = $request->validate(["nama_kategori" => "required|string|min:4"]);
+
+            $kategori = Kategori::create($data);
+
+            return response()->json([
+                "message" => "Berhasil menambah kategori",
+                "data" => $kategori
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                "message" => "Validasi Error",
+                "errors" => $e->errors()
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Gagal login",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -60,6 +94,17 @@ class KategoriController extends Controller
      */
     public function destroy(Kategori $kategori)
     {
-        //
+        try {
+            $kategori->delete();
+            return response()->json([
+                "message" => "berhasil menghapus kategori",
+                "data" => null
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Gagal menghapus kategori",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
 }

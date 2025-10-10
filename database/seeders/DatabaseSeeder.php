@@ -2,9 +2,11 @@
 
 namespace Database\Seeders;
 
+use App\Models\Kategori;
 use App\Models\User;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,16 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Tetato Admin',
+            'email' => 'tetato@admin.com',
+            "password" => Hash::make('tetatoadmin123'),
+        ]);
+
+        Kategori::insert([
+            ["nama_kategori" => "Kemasan 65 Gram"],
+            ["nama_kategori" => "Kemasan 250 Gram"],
+            ["nama_kategori" => "Paket Bundling"]
         ]);
     }
 }
