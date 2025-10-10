@@ -3,13 +3,13 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Produk extends Model
 {
     protected $guarded = ['id'];
 
-    public function kategories():HasMany {
-        return $this->hasMany(Kategori::class);
+    public function kategori():BelongsTo {
+        return $this->BelongsTo(Kategori::class);
     }
 }
