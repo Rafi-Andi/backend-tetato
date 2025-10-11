@@ -26,5 +26,7 @@ class DatabaseSeeder extends Seeder
             ["nama_kategori" => "Kemasan 250 Gram"],
             ["nama_kategori" => "Paket Bundling"]
         ]);
+
+        $this->call(ProdukSeeder::class);
     }
 }

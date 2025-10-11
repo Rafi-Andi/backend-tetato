@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Exception;
 use App\Models\Produk;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
@@ -13,11 +14,19 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $produk = Produk::with('kategori')->get();
 
+            $query = Produk::query()->with('kategori');
+
+            if ($request->has('kategori')) {
+                $query->whereHas('kategori', function ($query) use ($request) {
+                    $query->where('id', $request['kategori']);
+                });
+            }
+
+            $produk = $query->paginate(5);
             return response()->json([
                 "message" => "Berhasil mengambil data produk",
                 "data" => $produk
@@ -48,6 +57,7 @@ class ProdukController extends Controller
                 "kategori_id" => "required|integer|exists:kategoris,id",
                 "nama_produk" => "required|string|min:6",
                 "harga" => "required|numeric",
+                "deskripsi" => "required|string|min:8",
                 "file_path" => "required|file|mimes:png,jpg,webp|max:1000"
             ]);
 
@@ -57,8 +67,10 @@ class ProdukController extends Controller
             $produk = Produk::create([
                 "kategori_id" => $data['kategori_id'],
                 "nama_produk" => $data['nama_produk'],
+                "slug" => Str::slug($data['nama_produk']),
                 "harga" => $data['harga'],
                 "url_image" => $file_url,
+                "deskripsi" => $data['deskripsi']
             ]);
 
             return response()->json([
@@ -81,25 +93,69 @@ class ProdukController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Produk $produk)
+    public function show($slug)
     {
-        //
+        try {
+            $produk = Produk::where('slug', $slug)->with('kategori')->get();
+            return response()->json([
+                "message" => "berhasil mengambil detail produk",
+                "data" => $produk
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Gagal mengambil detail produk",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Produk $produk)
-    {
-        //
-    }
+    public function edit(Produk $produk) {}
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Produk $produk)
     {
-        //
+
+        try {
+            $data = $request->validate([
+                "kategori_id" => "required|integer|exists:kategoris,id",
+                "nama_produk" => "required|string|min:6",
+                "harga" => "required|numeric",
+                "file_path" => "required|file|mimes:png,jpg,webp|max:1000",
+                "deskripsi" => "required|string|min:8",
+            ]);
+
+            $file_path = $request->file('file_path')->store('img', 'public');
+            $file_url = Storage::url($file_path);
+
+            $produk->update([
+                "kategori_id" => $data['kategori_id'],
+                "nama_produk" => $data['nama_produk'],
+                "harga" => $data['harga'],
+                "url_image" => $file_url,
+                "slug" => Str::slug($data['nama_produk']),
+                "deskripsi" => $data['deskripsi']
+            ]);
+
+            return response()->json([
+                "message" => "Berhasil Mengedit produk",
+                "data" => $produk,
+            ]);
+        } catch (ValidationException $e) {
+            return response()->json([
+                "message" => "Validasi Error",
+                "errors" => $e->errors()
+            ]);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Gagal menambahkan produk",
+                "error" => $e->getMessage()
+            ]);
+        }
     }
 
     /**
@@ -110,7 +166,7 @@ class ProdukController extends Controller
         try {
             $produk->delete();
             return response()->json([
-                "message"=> "Berhasil menghapus produk",
+                "message" => "Berhasil menghapus produk",
                 "data" => "null"
             ]);
         } catch (Exception $e) {

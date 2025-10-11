@@ -8,13 +8,15 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::post('/login', [AuthController::class, 'login']);
+Route::get('/produk', [ProdukController::class, 'index']);
+Route::get('/produk/{slug}', [ProdukController::class, 'show']);
+Route::get('/kategori', [KategoriController::class, 'index']);
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/kategori', [KategoriController::class, 'index']);
     Route::post('/kategori', [KategoriController::class, 'store']);
     Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy']);
 
     Route::post('/produk', [ProdukController::class, 'store']);
-    Route::get('/produk', [ProdukController::class, 'index']);
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy']);
+    Route::put('/produk/{produk}', [ProdukController::class, 'update']);
 });
