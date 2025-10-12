@@ -19,7 +19,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Korean BBQ',
                 'slug' => 'tetato-korean-bbq-65-gram',
                 'harga' => 15000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/korean-65gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/FQK9gqsS3MBjrairdpkLT9nD9SuconeNfvbucFN5.webp',
                 'deskripsi' => 'Rasa smoky manis gurih ala barbeque Korea, bikin ngemil jadi makin seru.',
             ],
             [
@@ -27,7 +27,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Chips Spicy',
                 'slug' => 'tetato-chips-spicy-65-gram',
                 'harga' => 15000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/spicy-65gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/qhL9RsVEdar0hT0xbIMN8eYQRltSU6KUUZnuox46.webp',
                 'deskripsi' => 'Pedas mantap yang bikin lidah bergoyang, cocok buat pecinta sensasi hot & crunchy!',
             ],
             [
@@ -35,7 +35,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Chips Original',
                 'slug' => 'tetato-chips-original-65-gram',
                 'harga' => 15000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/original-65gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/UsdiXLaQhi6PPgJfr0snfGCjJFS91FbWUXrSD0e6.webp',
                 'deskripsi' => 'Kerenyahan kentang asli dengan rasa gurih alami. Ringan, renyah, dan selalu bikin nagih!',
             ],
             [
@@ -43,7 +43,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Sour Cream',
                 'slug' => 'tetato-sour-cream-65-gram',
                 'harga' => 15000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/sourcream-65gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/tbrT6nDdbJ8gd15hC5gXWLxZ8ioi789ci13qPzYg.webp',
                 'deskripsi' => 'Perpaduan gurih, creamy, dan segar dari sour cream dengan sentuhan bawang yang khas.',
             ],
             [
@@ -51,7 +51,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Roasted Corn',
                 'slug' => 'tetato-roasted-corn-65-gram',
                 'harga' => 15000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/roasted-65gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/suFDsqfwHea9JBtZbYgZmjKCv3gQGmTNxFY8W0Ri.webp',
                 'deskripsi' => 'Aroma jagung bakar manis gurih yang khas, bikin camilan ini beda dari yang lain.',
             ],
             [
@@ -59,7 +59,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Korean BBQ',
                 'slug' => 'tetato-korean-bbq-250-gram',
                 'harga' => 50000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/korean-250gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/DfExanfXl1JnpGzKwmR1NzkOoVHVEPBqJfNELFgA.webp',
                 'deskripsi' => 'Rasa smoky manis gurih ala barbeque Korea, bikin ngemil jadi makin seru.',
             ],
             [
@@ -67,7 +67,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Chips Spicy',
                 'slug' => 'tetato-chips-spicy-250-gram',
                 'harga' => 50000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/spicy-250gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/vK6ITkf10Ak4WCHJ3AKvClBY6sTZiiOsauP9oimV.webp',
                 'deskripsi' => 'Pedas mantap yang bikin lidah bergoyang, cocok buat pecinta sensasi hot & crunchy!',
             ],
             [
@@ -75,7 +75,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Chips Original',
                 'slug' => 'tetato-chips-original-250-gram',
                 'harga' => 50000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/original-250gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/Fk9KMcMidVdtdLDEuv32d9yuHr6Nrvml9jp6CZVL.webp',
                 'deskripsi' => 'Kerenyahan kentang asli dengan rasa gurih alami. Ringan, renyah, dan selalu bikin nagih!',
             ],
             [
@@ -83,7 +83,7 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Sour Cream',
                 'slug' => 'tetato-sour-cream-250-gram',
                 'harga' => 50000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/sourcream-250gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/JAkwPeUlJMvHQKttZdJnB4wrEmt3CaXeO1mFgF1w.webp',
                 'deskripsi' => 'Perpaduan gurih, creamy, dan segar dari sour cream dengan sentuhan bawang yang khas.',
             ],
             [
@@ -91,7 +91,15 @@ class ProdukSeeder extends Seeder
                 'nama_produk' => 'Tetato Roasted Corn',
                 'slug' => 'tetato-roasted-corn-250-gram',
                 'harga' => 50000,
-                'url_image' => 'https://ik.imagekit.io/misxxns4p/produk/roastedcorn-250gram.webp',
+                'url_image' => 'http://127.0.0.1:8000/storage/img/K10V91T4lB6kHpvMNaRsNmPr3ZQTC25rPDD74nzW.webp',
+                'deskripsi' => 'Aroma jagung bakar manis gurih yang khas, bikin camilan ini beda dari yang lain.',
+            ],
+            [
+                'kategori_id' => 3,
+                'nama_produk' => 'Bundling Hemat 4 Pcs 65 Gram',
+                'slug' => 'bundling-hemat-4-pcs-65-gram',
+                'harga' => 57000,
+                'url_image' => 'http://127.0.0.1:8000/storage/img/imnhzlKLd1FU7em0F7p2G40RTXH4LDol72ocTlK8.png',
                 'deskripsi' => 'Aroma jagung bakar manis gurih yang khas, bikin camilan ini beda dari yang lain.',
             ],
         ]);

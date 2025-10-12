@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Http\Request;
@@ -11,6 +12,8 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::get('/produk', [ProdukController::class, 'index']);
 Route::get('/produk/{slug}', [ProdukController::class, 'show']);
 Route::get('/kategori', [KategoriController::class, 'index']);
+
+Route::post('/checkout', [CheckoutController::class, 'checkout']);
 
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/kategori', [KategoriController::class, 'store']);
