@@ -25,7 +25,7 @@ class ProdukController extends Controller
                     $query->where('id', $request['kategori']);
                 });
             }
-
+            
             $produk = $query->paginate(5);
             return response()->json([
                 "message" => "Berhasil mengambil data produk",

@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KategoriController;
+use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProdukController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
@@ -22,4 +23,7 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::post('/produk', [ProdukController::class, 'store']);
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy']);
     Route::put('/produk/{produk}', [ProdukController::class, 'update']);
+
+    Route::get('/pesanan', [PesananController::class, 'index']);
+    Route::put('/pesanan/{pesanan}', [PesananController::class, 'update']);
 });
