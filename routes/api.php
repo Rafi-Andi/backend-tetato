@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AnalisisController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\KategoriController;
@@ -26,4 +27,6 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::get('/pesanan', [PesananController::class, 'index']);
     Route::put('/pesanan/{pesanan}', [PesananController::class, 'update']);
+
+    Route::get('/analisis', [AnalisisController::class, 'analisis']);
 });
