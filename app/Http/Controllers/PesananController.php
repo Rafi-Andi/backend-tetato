@@ -17,23 +17,23 @@ class PesananController extends Controller
         try {
             $query = Pesanan::query();
 
-            if ($request->has('status')) {
+            if ($request->filled('status')) {
                 $query->where('status', $request['status']);
             };
 
-            if ($request->has('tanggal')) {
-                $query->whereDate('created_at', $request['tanggal']);
+            if ($request->filled('date')) {
+                $query->whereDate('created_at', $request['date']);
             }
 
-            if ($request->has('search')) {
+            if ($request->filled('search')) {
                 $search = $request['search'];
 
-                $query->where(function($q) use ($search) {
+                $query->where(function ($q) use ($search) {
                     $q->where('id', $search)->orWhere('nama_pelanggan', 'like', "%{$search}%");
                 });
             }
 
-            $produk = $query->with('pesanan_details')->paginate(5);
+            $produk = $query->with('pesanan_details')->orderByDesc('created_at')->paginate(5);
 
             return response()->json([
                 "message" => "berhasil ambil data pesanan",
@@ -43,7 +43,7 @@ class PesananController extends Controller
             return response()->json([
                 "message" => "gagal mengambil data pesanan",
                 "errors" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -68,7 +68,11 @@ class PesananController extends Controller
      */
     public function show(Pesanan $pesanan)
     {
-        //
+        $pesanan->load('pesanan_details');
+        return response()->json([
+            "message" => "Berhasil menampilkan detail pesanan",
+            "data" => $pesanan
+        ]);
     }
 
     /**
@@ -93,7 +97,7 @@ class PesananController extends Controller
         return response()->json([
             "message" => "Berhasil update pesanan",
             "data" => $pesanan->status
-        ]);
+        ], 201);
     }
 
     /**

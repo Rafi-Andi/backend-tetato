@@ -12,23 +12,25 @@ use Exception;
 
 class CheckoutController extends Controller
 {
-    public function checkout(CheckoutRequest $request) {
+    public function checkout(CheckoutRequest $request)
+    {
         $data = $request->validated();
 
         $produkId = collect($data['items'])->pluck('produk_id')->toArray();
 
         $dbProduk = Produk::whereIn('id', $produkId)->get()->keyBy('id');
 
-        if(count($dbProduk) !== count($produkId)){
+
+        if ($dbProduk->count() !== collect($produkId)->unique()->count()) {
             return response()->json([
                 "message" => "Beberapa produk tidak di temukan"
-            ]);
-        };
+            ], 500);
+        }
 
         $totalHarga = 0;
         $pesananDetails = [];
 
-        foreach($data['items'] as $item){
+        foreach ($data['items'] as $item) {
             $product = $dbProduk->get($item['produk_id']);
             $hargaSatuan = $product->harga;
             $subTotal = $hargaSatuan * $item['jumlah'];
@@ -57,7 +59,7 @@ class CheckoutController extends Controller
 
             $pesananId = $pesanan->id;
 
-            $detailTransaksi = collect($pesananDetails)->map(function($detail) use($pesananId) {
+            $detailTransaksi = collect($pesananDetails)->map(function ($detail) use ($pesananId) {
                 $detail['pesanan_id'] = $pesananId;
                 $detail['created_at'] = now();
                 $detail['updated_at'] = now();
@@ -81,9 +83,9 @@ class CheckoutController extends Controller
             DB::rollBack();
 
             return response()->json([
-                "message"=> "Gagal Checkout",
+                "message" => "Gagal Checkout",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 }

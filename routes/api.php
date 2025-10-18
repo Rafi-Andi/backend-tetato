@@ -23,10 +23,11 @@ Route::middleware('auth:sanctum')->group(function() {
 
     Route::post('/produk', [ProdukController::class, 'store']);
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy']);
-    Route::put('/produk/{produk}', [ProdukController::class, 'update']);
+    Route::post('/produk/{produk}', [ProdukController::class, 'update']);
 
     Route::get('/pesanan', [PesananController::class, 'index']);
     Route::put('/pesanan/{pesanan}', [PesananController::class, 'update']);
+    Route::get('/pesanan/{pesanan}', [PesananController::class, 'show']);
 
     Route::get('/analisis', [AnalisisController::class, 'analisis']);
 });

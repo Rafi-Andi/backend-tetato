@@ -29,17 +29,17 @@ class AuthController extends Controller
             return response()->json([
                 "message" => "Berhasil login",
                 "token" => $token
-            ]);
+            ], 201);
         } catch (ValidationException $e) {
             return response()->json([
                 "message" => "Validasi Error",
                 "errors" => $e->errors()
-            ]);
+            ], 500);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal login",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 }

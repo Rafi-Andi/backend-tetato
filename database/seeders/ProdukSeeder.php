@@ -16,7 +16,7 @@ class ProdukSeeder extends Seeder
         DB::table('produks')->insert([
             [
                 'kategori_id' => 1,
-                'nama_produk' => 'Tetato Korean BBQ',
+                'nama_produk' => 'Tetato Korean BBQ 65 Gram',
                 'slug' => 'tetato-korean-bbq-65-gram',
                 'harga' => 15000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/FQK9gqsS3MBjrairdpkLT9nD9SuconeNfvbucFN5.webp',
@@ -24,7 +24,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 1,
-                'nama_produk' => 'Tetato Chips Spicy',
+                'nama_produk' => 'Tetato Chips Spicy 65 Gram',
                 'slug' => 'tetato-chips-spicy-65-gram',
                 'harga' => 15000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/qhL9RsVEdar0hT0xbIMN8eYQRltSU6KUUZnuox46.webp',
@@ -32,7 +32,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 1,
-                'nama_produk' => 'Tetato Chips Original',
+                'nama_produk' => 'Tetato Chips Original 65 Gram',
                 'slug' => 'tetato-chips-original-65-gram',
                 'harga' => 15000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/UsdiXLaQhi6PPgJfr0snfGCjJFS91FbWUXrSD0e6.webp',
@@ -40,7 +40,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 1,
-                'nama_produk' => 'Tetato Sour Cream',
+                'nama_produk' => 'Tetato Sour Cream 65 Gram',
                 'slug' => 'tetato-sour-cream-65-gram',
                 'harga' => 15000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/tbrT6nDdbJ8gd15hC5gXWLxZ8ioi789ci13qPzYg.webp',
@@ -48,7 +48,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 1,
-                'nama_produk' => 'Tetato Roasted Corn',
+                'nama_produk' => 'Tetato Roasted Corn 65 Gram',
                 'slug' => 'tetato-roasted-corn-65-gram',
                 'harga' => 15000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/suFDsqfwHea9JBtZbYgZmjKCv3gQGmTNxFY8W0Ri.webp',
@@ -56,7 +56,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 2,
-                'nama_produk' => 'Tetato Korean BBQ',
+                'nama_produk' => 'Tetato Korean BBQ 250 Gram',
                 'slug' => 'tetato-korean-bbq-250-gram',
                 'harga' => 50000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/DfExanfXl1JnpGzKwmR1NzkOoVHVEPBqJfNELFgA.webp',
@@ -64,7 +64,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 2,
-                'nama_produk' => 'Tetato Chips Spicy',
+                'nama_produk' => 'Tetato Chips Spicy 250 Gram',
                 'slug' => 'tetato-chips-spicy-250-gram',
                 'harga' => 50000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/vK6ITkf10Ak4WCHJ3AKvClBY6sTZiiOsauP9oimV.webp',
@@ -72,7 +72,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 2,
-                'nama_produk' => 'Tetato Chips Original',
+                'nama_produk' => 'Tetato Chips Original 250 Gram',
                 'slug' => 'tetato-chips-original-250-gram',
                 'harga' => 50000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/Fk9KMcMidVdtdLDEuv32d9yuHr6Nrvml9jp6CZVL.webp',
@@ -80,7 +80,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 2,
-                'nama_produk' => 'Tetato Sour Cream',
+                'nama_produk' => 'Tetato Sour Cream 250 Gram',
                 'slug' => 'tetato-sour-cream-250-gram',
                 'harga' => 50000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/JAkwPeUlJMvHQKttZdJnB4wrEmt3CaXeO1mFgF1w.webp',
@@ -88,7 +88,7 @@ class ProdukSeeder extends Seeder
             ],
             [
                 'kategori_id' => 2,
-                'nama_produk' => 'Tetato Roasted Corn',
+                'nama_produk' => 'Tetato Roasted Corn 250 Gram',
                 'slug' => 'tetato-roasted-corn-250-gram',
                 'harga' => 50000,
                 'url_image' => 'http://127.0.0.1:8000/storage/img/K10V91T4lB6kHpvMNaRsNmPr3ZQTC25rPDD74nzW.webp',

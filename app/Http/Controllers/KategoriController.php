@@ -21,12 +21,12 @@ class KategoriController extends Controller
             return response()->json([
                 "message" => "Berhasil mengambil data kategori",
                 "data" => $kategori
-            ]);
+            ], 200);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal Mengambil Data Kategori",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -51,17 +51,17 @@ class KategoriController extends Controller
             return response()->json([
                 "message" => "Berhasil menambah kategori",
                 "data" => $kategori
-            ]);
+            ], 200);
         } catch (ValidationException $e) {
             return response()->json([
                 "message" => "Validasi Error",
                 "errors" => $e->errors()
-            ]);
+            ], 500);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal login",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -99,12 +99,12 @@ class KategoriController extends Controller
             return response()->json([
                 "message" => "berhasil menghapus kategori",
                 "data" => null
-            ]);
+            ], 200);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal menghapus kategori",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 }

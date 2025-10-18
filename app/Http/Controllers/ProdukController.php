@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kategori;
 use Exception;
 use App\Models\Produk;
 use Illuminate\Support\Str;
@@ -25,17 +26,17 @@ class ProdukController extends Controller
                     $query->where('id', $request['kategori']);
                 });
             }
-            
+
             $produk = $query->paginate(5);
             return response()->json([
                 "message" => "Berhasil mengambil data produk",
                 "data" => $produk
-            ]);
+            ], 200);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal Mengambil data produk",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -64,29 +65,35 @@ class ProdukController extends Controller
             $file_path = $request->file('file_path')->store('img', 'public');
             $file_url = Storage::url($file_path);
 
+            $image_url = 'http://127.0.0.1:8000' . $file_url;
+
             $produk = Produk::create([
                 "kategori_id" => $data['kategori_id'],
                 "nama_produk" => $data['nama_produk'],
                 "slug" => Str::slug($data['nama_produk']),
                 "harga" => $data['harga'],
-                "url_image" => $file_url,
+                "url_image" => $image_url,
                 "deskripsi" => $data['deskripsi']
             ]);
 
+
             return response()->json([
                 "message" => "Berhasil menambahkan produk",
-                "data" => $produk
-            ]);
+                "data" => [
+                    "produk" => $produk,
+                    "nama_kategori" => $produk->kategori->nama_kategori
+                ]
+            ], 201);
         } catch (ValidationException $e) {
             return response()->json([
                 "message" => "Validasi Error",
                 "errors" => $e->errors()
-            ]);
+            ], 500);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal menambahkan produk",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -100,12 +107,12 @@ class ProdukController extends Controller
             return response()->json([
                 "message" => "berhasil mengambil detail produk",
                 "data" => $produk
-            ]);
+            ], 200);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal mengambil detail produk",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -132,11 +139,14 @@ class ProdukController extends Controller
             $file_path = $request->file('file_path')->store('img', 'public');
             $file_url = Storage::url($file_path);
 
+            $image_url = 'http://127.0.0.1:8000' . $file_url;
+
+
             $produk->update([
                 "kategori_id" => $data['kategori_id'],
                 "nama_produk" => $data['nama_produk'],
                 "harga" => $data['harga'],
-                "url_image" => $file_url,
+                "url_image" => $image_url,
                 "slug" => Str::slug($data['nama_produk']),
                 "deskripsi" => $data['deskripsi']
             ]);
@@ -144,17 +154,17 @@ class ProdukController extends Controller
             return response()->json([
                 "message" => "Berhasil Mengedit produk",
                 "data" => $produk,
-            ]);
+            ], 201);
         } catch (ValidationException $e) {
             return response()->json([
                 "message" => "Validasi Error",
                 "errors" => $e->errors()
-            ]);
+            ], 500);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal menambahkan produk",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 
@@ -168,12 +178,14 @@ class ProdukController extends Controller
             return response()->json([
                 "message" => "Berhasil menghapus produk",
                 "data" => "null"
-            ]);
+            ], 201);
+        } catch (\Illuminate\Database\QueryException $e) {
+            return response()->json(['message' => 'Gagal menghapus produk, masih digunakan di pesanan!'], 500);
         } catch (Exception $e) {
             return response()->json([
                 "message" => "Gagal menghapus produk",
                 "error" => $e->getMessage()
-            ]);
+            ], 500);
         }
     }
 }
