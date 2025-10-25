@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('pesanans', function (Blueprint $table) {
             $table->id();
+            $table->string('kode_pesanan')->nullable();
             $table->string('nama_pelanggan');
             $table->string('email');
             $table->string('telepon');

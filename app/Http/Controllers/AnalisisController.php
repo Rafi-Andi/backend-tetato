@@ -15,7 +15,10 @@ class AnalisisController extends Controller
     {
         $totalPendapatanSelesai = Pesanan::where('status', 'selesai')->sum('total_harga');
         $jumlahPesanan = Pesanan::count();
-        $produkTerjual = PesananDetail::sum('jumlah');
+        $produkTerjual = DB::table('pesanan_details')
+            ->join('pesanans', 'pesanan_details.pesanan_id', '=', 'pesanans.id')
+            ->where('pesanans.status', 'selesai')
+            ->sum('pesanan_details.jumlah');
         $jumlahProduk = Produk::count();
         $totalPesananBaru = Pesanan::where('status', 'baru')->count();
 

@@ -15,7 +15,7 @@ class CheckoutController extends Controller
     public function checkout(CheckoutRequest $request)
     {
         $data = $request->validated();
-
+        
         $produkId = collect($data['items'])->pluck('produk_id')->toArray();
 
         $dbProduk = Produk::whereIn('id', $produkId)->get()->keyBy('id');
@@ -58,6 +58,17 @@ class CheckoutController extends Controller
             ]);
 
             $pesananId = $pesanan->id;
+
+            $prefix = 'TC-';
+            $yearMonth = date('Ym');
+            $newId = $pesananId; 
+
+            $paddedNumber = str_pad($newId, 5, '0', STR_PAD_LEFT); 
+
+            $orderNumber = "{$prefix}{$yearMonth}-{$paddedNumber}";
+
+            $pesanan->kode_pesanan = $orderNumber;
+            $pesanan->save();
 
             $detailTransaksi = collect($pesananDetails)->map(function ($detail) use ($pesananId) {
                 $detail['pesanan_id'] = $pesananId;

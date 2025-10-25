@@ -3,6 +3,7 @@
 use App\Http\Controllers\AnalisisController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\InvoiceController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\PesananController;
 use App\Http\Controllers\ProdukController;
@@ -20,6 +21,7 @@ Route::post('/checkout', [CheckoutController::class, 'checkout']);
 Route::middleware('auth:sanctum')->group(function() {
     Route::post('/kategori', [KategoriController::class, 'store']);
     Route::delete('/kategori/{kategori}', [KategoriController::class, 'destroy']);
+    Route::post('/kategori/{kategori}', [KategoriController::class, 'update']);
 
     Route::post('/produk', [ProdukController::class, 'store']);
     Route::delete('/produk/{produk}', [ProdukController::class, 'destroy']);
@@ -30,4 +32,6 @@ Route::middleware('auth:sanctum')->group(function() {
     Route::get('/pesanan/{pesanan}', [PesananController::class, 'show']);
 
     Route::get('/analisis', [AnalisisController::class, 'analisis']);
+
+    Route::post('/invoice/{id}', [InvoiceController::class, 'exportPdfInvoice']);
 });
