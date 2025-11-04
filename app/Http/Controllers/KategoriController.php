@@ -30,6 +30,22 @@ class KategoriController extends Controller
         }
     }
 
+    public function getAll()
+    {
+        try {
+            $kategori = Kategori::select('id', 'nama_kategori')->get();
+
+            return response()->json([
+                "message" => "Berhasil mengambil data kategori",
+                "data" => $kategori
+            ], 200);
+        } catch (Exception $e) {
+            return response()->json([
+                "message" => "Gagal Mengambil Data Kategori",
+                "error" => $e->getMessage()
+            ], 500);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */

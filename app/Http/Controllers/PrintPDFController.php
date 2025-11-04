@@ -6,7 +6,7 @@ use App\Models\Pesanan;
 use Illuminate\Http\Request;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class InvoiceController extends Controller
+class PrintPDFController extends Controller
 {
     public function exportPdfInvoice(Request $request, $id)
     {
@@ -20,12 +20,13 @@ class InvoiceController extends Controller
         $pdf = PDF::loadView('invoices.pdf_invoice', compact('invoice', 'ongkir'));
 
         return $pdf->output();
+    }
 
-        // return response()->json([
-        //     "data" => [
-        //         $invoice,
-        //         $ongkir
-        //     ]
-        // ]);
+    public function exportPdfOrder(Request $request) {
+        $data = $request;
+        $pdf = PDF::loadView('invoices.pdf_order', compact('data'));
+
+        // return $request;
+        return $pdf->output();
     }
 }

@@ -85,9 +85,13 @@ class CheckoutController extends Controller
             return response()->json([
                 "message" => "Pesanan Berhasil dibuat, Mohon tunggu dihubungi oleh Admin",
                 "data" => [
-                    "pesanan_id" => $pesananId,
+                    "nama_pelanggan" => $pesanan->nama_pelanggan,
+                    "alamat" => $pesanan->alamat_pengiriman,
+                    "tanggal" => now(),
+                    "telepon" => $pesanan->telepon,
                     "totalHarga" => $totalHarga,
-                    "status" => $pesanan->status
+                    "kode_pesanan" => $orderNumber,
+                    "detail_transaksi" => $detailTransaksi
                 ]
             ], 201);
         } catch (Exception $e) {

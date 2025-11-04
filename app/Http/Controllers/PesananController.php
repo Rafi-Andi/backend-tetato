@@ -89,7 +89,7 @@ class PesananController extends Controller
     public function update(Request $request, Pesanan $pesanan)
     {
         $data = $request->validate([
-            "status" =>  "required|string|in:baru,proses,selesai"
+            "status" =>  "required|string|in:baru,proses,dikirim,selesai"
         ]);
 
         $pesanan->update($data);

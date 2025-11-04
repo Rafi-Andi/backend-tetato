@@ -42,4 +42,28 @@ class AuthController extends Controller
             ], 500);
         }
     }
+
+    public function logout()
+    {
+        try {
+            $user = Auth::user();
+
+            if ($user && $user->currentAccessToken()) {
+                $user->currentAccessToken()->delete();
+
+                return response()->json([
+                    'message' => 'Logout berhasil',
+                ], 200);
+            }
+
+            return response()->json([
+                'message' => 'Token tidak valid atau sudah logout',
+            ], 401);
+        } catch (\Throwable $th) {
+            return response()->json([
+                'message' => 'Terjadi kesalahan saat logout',
+                'error' => $th->getMessage(),
+            ], 500);
+        }
+    }
 }

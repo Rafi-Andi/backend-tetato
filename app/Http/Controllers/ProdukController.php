@@ -132,24 +132,28 @@ class ProdukController extends Controller
                 "kategori_id" => "required|integer|exists:kategoris,id",
                 "nama_produk" => "required|string|min:6",
                 "harga" => "required|numeric",
-                "file_path" => "required|file|mimes:png,jpg,webp|max:1000",
+                "file_path" => "sometimes|file|mimes:png,jpg,webp|max:1000",
                 "deskripsi" => "required|string|min:8",
+                "_method" => "sometimes|in:PUT,PATCH",
             ]);
 
-            $file_path = $request->file('file_path')->store('img', 'public');
-            $file_url = Storage::url($file_path);
-
-            $image_url = 'http://127.0.0.1:8000' . $file_url;
-
-
-            $produk->update([
+            $produkData = [
                 "kategori_id" => $data['kategori_id'],
                 "nama_produk" => $data['nama_produk'],
                 "harga" => $data['harga'],
-                "url_image" => $image_url,
                 "slug" => Str::slug($data['nama_produk']),
                 "deskripsi" => $data['deskripsi']
-            ]);
+            ];
+
+            if ($request->hasFile('file_path')) {
+                $file_path = $request->file('file_path')->store('img', 'public');
+                $file_url = Storage::url($file_path);
+
+                $url_image = 'http://127.0.0.1:8000' . $file_url;
+                $produkData['url_image'] = $url_image;
+            }
+
+            $produk->update($produkData);
 
             return response()->json([
                 "message" => "Berhasil Mengedit produk",

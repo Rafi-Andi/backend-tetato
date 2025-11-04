@@ -16,7 +16,7 @@ class CheckoutRequest extends FormRequest
         return [
             'nama_pelanggan' => 'required|string',
             'email' => 'required|email',
-            'telepon' => ['required', 'regex:/^(?:\\+62|62|0)8[0-9]{8,13}$/', 'string'],
+            'telepon' => ['required', 'regex:/^8[1-9][0-9]{7,12}$/', 'string'],
             'alamat_pengiriman' => 'required|string',
             'items' => 'required|array|min:1',        
             'items.*.produk_id' => 'required|integer|exists:produks,id',
@@ -34,7 +34,7 @@ class CheckoutRequest extends FormRequest
             'email.email' => 'Format email tidak valid.',
             
             'telepon.required' => 'Nomor telepon wajib diisi.',
-            'telepon.regex' => 'Nomor WhatsApp harus diawali dengan 08, 62, atau +62 dan hanya berisi angka.',
+            'telepon.regex' => 'Nomor WhatsApp harus dimulai dengan angka 8 tanpa awalan 0 atau +62. Contoh: 81234567890.',
             'telepon.string' => 'Nomor WhatsApp harus berupa teks.',
             
             'alamat_pengiriman.required' => 'Alamat pengiriman wajib diisi.',
