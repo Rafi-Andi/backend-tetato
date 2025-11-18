@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Exception;
+use App\Models\Produk;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -127,9 +128,19 @@ class KategoriController extends Controller
     public function destroy(Kategori $kategori)
     {
         try {
+            $jumlahProduk = Produk::where('kategori_id', $kategori->id)->count();
+
+            if ($jumlahProduk > 0) {
+                return response()->json([
+                    "message" => "Gagal menghapus kategori",
+                    "error" => "Kategori masih digunakan oleh $jumlahProduk produk"
+                ], 409);
+            }
+
             $kategori->delete();
+
             return response()->json([
-                "message" => "berhasil menghapus kategori",
+                "message" => "Berhasil menghapus kategori",
                 "data" => null
             ], 200);
         } catch (Exception $e) {
